@@ -1,0 +1,11 @@
+[8,9,10,1,9,0]
+Output: true
+
+[-18,9,10,-18,9,0]
+Output: true
+
+[-18,9,10,9,9]
+Output: true
+
+[-18,9,10,99,90]
+Output: false
