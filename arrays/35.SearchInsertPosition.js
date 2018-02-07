@@ -10,30 +10,29 @@
  * Fixed
  */
 var insertPosition = function(nums,target){
-
-    if(target>nums[nums.length-1]){ 
+    if(target > nums[nums.length - 1]){ 
         return nums.length; 
     }
-    else if(target<nums[0]){
+    else if(target < nums[0]){
         return 0;
     }
+
     let first = 0;
-    let last = nums.length-1;
+    let last = nums.length - 1;
     let middleIndex = Math.floor((last - first) / 2) + first; //search middle index of array for searching value in left or right part of array
         
-    while (first < last) {
-            
+    while (first < last){
         let value = nums[middleIndex];
-            
-            if (value === target) {
-                return middleIndex;  //index is found  
-            }
-            else if (target < value) {
-                last = middleIndex;
-         }
-            else {
-                first = middleIndex + 1;
-            }
-            middleIndex = Math.floor((last - first) / 2) + first;  //assign new middle index and go deeper
+        
+        if (value === target){
+            return middleIndex;  //index is found  
         }
+        else if (target < value){
+            last = middleIndex;
+        }
+        else{
+            first = middleIndex + 1;
+        }
+        middleIndex = Math.floor((last - first) / 2) + first;  //assign new middle index and go deeper
+    }
 };

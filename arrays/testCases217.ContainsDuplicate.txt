@@ -9,3 +9,7 @@ Output: true
 
 [-18,9,10,99,90]
 Output: false
+
+[0,6,9,0,8]
+Output: true
+

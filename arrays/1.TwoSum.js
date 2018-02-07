@@ -9,17 +9,17 @@
  * Fixed
  */
 var twoSum = function(numbers, target){
-    let twoIndecies;
-    for(let i = 0; i < numbers.length; i++){
-            //condition, continue
-            if(numbers[i]>target){
-                continue;
-            }
-            for(let j = i+1; j<numbers.length; j++){
-                if(numbers[i]+numbers[j]===target){
-                    twoIndecies=[i,j];
-                    return twoIndecies;
-                }
+    const numbersLength = numbers.length;
+    let  isPositiveTarget = target > 0;
+ 
+    for(let i = 0; i < numbersLength; i++){
+        if(isPositiveTarget && numbers[i] > target){ 
+            continue;
+        }
+        for(let j = i + 1; j < numbersLength; j++){
+            if(numbers[i] + numbers[j] === target){
+                return [i,j];
             }
         }
+    }
 };

@@ -10,13 +10,14 @@
  */
 var containsDuplicate = function(nums) {
     var hash = {};
-
-    for(let i = 0; i < nums.length; i++){
-        if(hash[nums[i]]){
+    const numsLength = nums.length;
+    
+    for(let i = 0; i < numsLength; i++){
+        let currentNum = nums[i];
+        if(hash[currentNum] !== undefined){ 
             return true;
         }
-        hash[nums[i]] = nums[i];
+        hash[currentNum] = currentNum;
     }
     return false;
-    
 };

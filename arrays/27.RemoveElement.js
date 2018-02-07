@@ -10,16 +10,16 @@
  */
 
 var removeElement = function(nums, val) {
-
     let indexOfVal = nums.indexOf(val);
     
-    while(indexOfVal!==-1)
+    while(indexOfVal !== -1)
     {
-       if(indexOfVal === 0){
-           nums.shift();
-       }else{
-           nums.splice(indexOfVal,1);
-       }
+        if(indexOfVal === 0){
+            nums.shift();
+        }
+        else{
+            nums.splice(indexOfVal, 1);
+        }
         indexOfVal = nums.indexOf(val);
     }
     return nums.length;

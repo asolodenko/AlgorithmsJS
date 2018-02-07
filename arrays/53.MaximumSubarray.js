@@ -9,37 +9,14 @@
  * Fixed to Kadane`s algorithm
  */
 var maxSubArray = function(nums) {
-    // let subarray;
-    // let largestSum = nums[0];
-    // let sum = nums[0];
-    // let startSubarrayIndex = 0;
-    // let endSubarrayIndex = nums.length-1;
-    // for(let i = 1; i < nums.length; i++)
-    // {
-    //     if(sum < 0){ 
-    //         sum = 0;
-    //         startSubarrayIndex = i; 
-    //         endSubarrayIndex = i;  //subarray may containing at least one number
-    //     }
-    //     sum += nums[i];
-    //     endSubarrayIndex++; //saving index of possible end of array
-    //     if(sum > largestSum){
-    //         largestSum = sum; //save the largest sum
-    //     }
-    // }
-    // subarray = nums.slice(startSubarrayIndex, endSubarrayIndex); //save subarray with the largest sum
-    // return largestSum; // answer is required as the largest sum, but the task needs to find a subarray. what answer is right?
     let maxEndHere = 0;
-    let maxSumSoFar = 0;
+    let maxSumSoFar = nums[0];
+    const numsLength = nums.length;
 
-    for(let i = 0; i < nums.length; i++){
+    for(let i = 0; i < numsLength; i++){
         maxEndHere = maxEndHere + nums[i];
-        if(maxSumSoFar < maxEndHere){
-            maxSumSoFar = maxEndHere;
-        }
-        if(maxEndHere < 0){
-            maxEndHere = 0;
-        }
+        maxSumSoFar = Math.max(maxSumSoFar, maxEndHere);
+        maxEndHere = Math.max(maxEndHere, 0);
     }
     return maxSumSoFar;
 };
