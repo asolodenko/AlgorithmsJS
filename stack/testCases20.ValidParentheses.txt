@@ -1,0 +1,11 @@
+"([]})"
+Output: false
+
+"("
+Output : false
+
+"(){}[()]"
+Output: true
+
+"]"
+Output: false
