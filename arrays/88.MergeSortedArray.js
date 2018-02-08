@@ -12,9 +12,19 @@
  * elements from nums2. The number of elements initialized in nums1 and nums2 are m and n respectively.
  */
 var merge = function(nums1, m, nums2, n) {
-    
-    for(let i = 0; i < n; i++){
-        nums1.push(nums2[i]);
+    let lastIndexOfFirst = m - 1;
+    let lastIndexOfSecond = n - 1;
+    let lastAccessIndex = m + n - 1;
+
+    while (lastIndexOfFirst >= 0 && lastIndexOfSecond >= 0) {
+        if (nums1[lastIndexOfFirst] > nums2[lastIndexOfSecond]) {
+            nums1[lastAccessIndex--] = nums1[lastIndexOfFirst--];
+        } else {
+            nums1[lastAccessIndex--] = nums2[lastIndexOfSecond--];
+        }
     }
-    // method concat() may be used?    
+
+    while (lastIndexOfSecond >= 0) {
+        nums1[lastAccessIndex--] = nums2[lastIndexOfSecond--];
+    }
 };

@@ -13,10 +13,9 @@ var maxSubArray = function(nums) {
     let maxSumSoFar = nums[0];
     const numsLength = nums.length;
 
-    for(let i = 0; i < numsLength; i++){
-        maxEndHere = maxEndHere + nums[i];
+    for (let i = 0; i < numsLength; i++){
+        maxEndHere = Math.max(nums[i], maxEndHere + nums[i]);
         maxSumSoFar = Math.max(maxSumSoFar, maxEndHere);
-        maxEndHere = Math.max(maxEndHere, 0);
     }
     return maxSumSoFar;
 };
