@@ -18,13 +18,14 @@ var isValid = function(s) {
         let curItem = s[i];
         if (open.includes(curItem)) {
             stack.push(curItem);
+            continue;
         } 
         if (close.includes(curItem)){
             if (stack.length === 0){
                 return false;
             }
             let temp = stack.pop(); 
-            if ((temp ==='(' && s[i] ===')') || (temp ==='{' && s[i] ==='}') || (temp ==='[' && s[i] ===']')) {
+            if ((temp ==='(' && curItem ===')') || (temp ==='{' && curItem ==='}') || (temp ==='[' && curItem ===']')) {
                 continue;
             } else {
                 return false;
