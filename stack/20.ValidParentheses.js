@@ -9,8 +9,15 @@
 var isValid = function(s) {
     var stack = [];
     var sLength = s.length;
-    var open = ['(','{','['];
-    var close = [')','}',']'];
+    
+    var obj_open = { '(': ')',
+    '{': '}',
+    '[': ']'};
+    var obj_close = { ')': '(',
+    '}': '{',
+    ']': '['};
+    var open = Object.keys(obj_open);
+    var close = Object.keys(obj_close);
     if (!open.includes(s[0])) {
         return false;
     }
@@ -19,18 +26,18 @@ var isValid = function(s) {
         if (open.includes(curItem)) {
             stack.push(curItem);
             continue;
-        } 
-        if (close.includes(curItem)){
+        } else if (close.includes(curItem)){
             if (stack.length === 0){
                 return false;
             }
             let temp = stack.pop(); 
-            if ((temp ==='(' && curItem ===')') || (temp ==='{' && curItem ==='}') || (temp ==='[' && curItem ===']')) {
+            if (obj_open[temp] === curItem) {
                 continue;
             } else {
                 return false;
             }
-        }
+        } else
+        throw new Error('Symbol type exception');
     }
     return stack.length === 0 ? true : false;
 };
