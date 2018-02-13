@@ -8,8 +8,8 @@ top() -- Get the top element.
 getMin() -- Retrieve the minimum element in the stack.
 */
 var MinStack = function() {
-    this.size = 0;
-    this.storage = {};
+    this._size = 0;
+    this._storage = {};
 }; 
 
 /** 
@@ -17,15 +17,23 @@ var MinStack = function() {
  * @return {void}
  */
 MinStack.prototype.push = function(x) {
-    this.storage[this.size++] = x;
+    this._storage[this._size++] = x;
 };
 
 /**
  * @return {void}
  */
 MinStack.prototype.pop = function() {
-    if (this.size) {
-        return this.storage[this.size--];
+    var size = this._size,
+        deletedData;
+ 
+    if (size) {
+        deletedData = this._storage[size];
+ 
+        delete this._storage[size];
+        this._size--;
+ 
+        return deletedData;
     }
 };
 
@@ -33,18 +41,19 @@ MinStack.prototype.pop = function() {
  * @return {number}
  */
 MinStack.prototype.top = function() {
-    return this.storage[this.size - 1];
+    return this._storage[this._size - 1];
 };
 
 /**
  * @return {number}
  */
 MinStack.prototype.getMin = function() {
-    if (this.size) {
-        var min = this.storage[0];
-        var size = this.size;
+    if (this._size) {
+        var min = this._storage[0];
+        var size = this._size;
+        var storage = this._storage;
         for (let i = 1; i < size; i++) {
-            min = Math.min(min, this.storage[i]);
+            min = Math.min(min, storage[i]);
         }
         return min;
     }

@@ -13,27 +13,22 @@ var isValid = function(s) {
     var obj_open = { '(': ')',
     '{': '}',
     '[': ']'};
-    var obj_close = { ')': '(',
-    '}': '{',
-    ']': '['};
-    var open = Object.keys(obj_open);
-    var close = Object.keys(obj_close);
-    if (!open.includes(s[0])) {
+    var obj_close = reverseHash(obj_open);
+
+    if (obj_open[s[0]] === undefined) {
         return false;
     }
     for (let i = 0; i < sLength; i++) {
         let curItem = s[i];
-        if (open.includes(curItem)) {
+        if (obj_open[curItem] !== undefined) {
             stack.push(curItem);
             continue;
-        } else if (close.includes(curItem)){
+        } else if (obj_close[curItem] !== undefined) {
             if (stack.length === 0){
                 return false;
             }
             let temp = stack.pop(); 
-            if (obj_open[temp] === curItem) {
-                continue;
-            } else {
+            if (obj_open[temp] !== curItem) {
                 return false;
             }
         } else
@@ -41,3 +36,11 @@ var isValid = function(s) {
     }
     return stack.length === 0 ? true : false;
 };
+var reverseHash = function(hash) {
+    var obj_close = {};
+    var keys = Object.keys(hash);
+    for (var key of keys) {
+        obj_close[hash[key]] = key;
+    }
+    return obj_close;
+}

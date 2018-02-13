@@ -16,7 +16,13 @@ class Queue {
 
     dequeue() {
         if (this._oldestIndex !== this._newestIndex) {
-            return this._storage[this._oldestIndex++];
+            var oldestIndex = this._oldestIndex,
+            deletedData = this._storage[oldestIndex];
+            
+            delete this._storage[oldestIndex];
+            this._oldestIndex++;
+            
+            return deletedData;
         }
     }
 }
