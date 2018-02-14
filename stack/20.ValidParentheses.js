@@ -22,7 +22,6 @@ var isValid = function(s) {
         let curItem = s[i];
         if (obj_open[curItem] !== undefined) {
             stack.push(curItem);
-            continue;
         } else if (obj_close[curItem] !== undefined) {
             if (stack.length === 0){
                 return false;
@@ -36,11 +35,11 @@ var isValid = function(s) {
     }
     return stack.length === 0 ? true : false;
 };
-var reverseHash = function(hash) {
-    var obj_close = {};
-    var keys = Object.keys(hash);
+var reverseHash = function(initialHash) {
+    var reverseHash = {};
+    var keys = Object.keys(initialHash);
     for (var key of keys) {
-        obj_close[hash[key]] = key;
+        reverseHash[initialHash[key]] = key;
     }
-    return obj_close;
+    return reverseHash;
 }
