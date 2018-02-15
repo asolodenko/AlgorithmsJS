@@ -14,33 +14,30 @@
 */
 
 function sortedInsert(head, data) {
-    var insertNode = new Node(data);
+    let insertNode = new Node(data);
     if (head === null) {
+        return insertNode;
+    } 
+    let currentNode = head;
+    if (insertNode.data < currentNode.data) {
+        insertNode.next = currentNode;
+        currentNode.prev = insertNode;
         head = insertNode;
         return head;
-    } 
-    var beforeToInsert = head;
-    var afterToInsert = head.next;
-    if (beforeToInsert.prev === null && insertNode.data < beforeToInsert.data) {
-        insertNode.next = beforeToInsert;
-        beforeToInsert.prev = insertNode;
-        beforeToInsert = insertNode;
-        return beforeToInsert;
-    }
-    while (afterToInsert !== null) {
-        if (insertNode.data > beforeToInsert.data && insertNode.data < afterToInsert.data) {
-            beforeToInsert.next = insertNode;
-            insertNode.prev = beforeToInsert;
-            afterToInsert.prev = insertNode;
-            insertNode.next = afterToInsert;
-            return head;
+    } else {
+        while (currentNode.data < insertNode.data) {
+            if (currentNode.next === null) {
+                currentNode.next = insertNode;
+                insertNode.prev = currentNode;
+                return head;
+            } else {
+                currentNode = currentNode.next;
+            }
         }
-        afterToInsert = afterToInsert.next;
-        beforeToInsert = beforeToInsert.next;
-    } 
-    beforeToInsert.next = insertNode;
-    insertNode = beforeToInsert.prev;
-    beforeToInsert = insertNode;
-    
-    return head;
-}
+        currentNode.prev.next = insertNode;
+        insertNode.prev = currentNode.prev;
+        currentNode.prev = insertNode;
+        insertNode.next = currentNode;
+        return head;
+    }
+};
