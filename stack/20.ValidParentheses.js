@@ -7,13 +7,13 @@
  * The brackets must close in the correct order, "()" and "()[]{}" are all valid but "(]" and "([)]" are not.
  */
 var isValid = function(s) {
-    var stack = [];
-    var sLength = s.length;
+    let stack = [];
+    const sLength = s.length;
     
-    var obj_open = { '(': ')',
+    const obj_open = { '(': ')',
     '{': '}',
     '[': ']'};
-    var obj_close = reverseHash(obj_open);
+    const obj_close = reverseHash(obj_open);
 
     if (obj_open[s[0]] === undefined) {
         return false;
@@ -37,9 +37,9 @@ var isValid = function(s) {
     return stack.length === 0 ? true : false;
 };
 var reverseHash = function(hash) {
-    var obj_close = {};
-    var keys = Object.keys(hash);
-    for (var key of keys) {
+    let obj_close = {};
+    let keys = Object.keys(hash);
+    for (let key of keys) {
         obj_close[hash[key]] = key;
     }
     return obj_close;

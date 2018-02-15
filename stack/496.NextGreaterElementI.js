@@ -17,28 +17,25 @@
  * The length of both nums1 and nums2 would not exceed 1000.
  */
 var nextGreaterElement = function(findNums, nums) {
-    var lengthFindNums = findNums.length;
-    var lengthNums = nums.length;
-    var outputStack = [];
+    const lengthFindNums = findNums.length;
+    const lengthNums = nums.length;
+    let outputStack = [];
     
-    for (var i = 0; i < lengthFindNums; i++) {
-        var currentFindNums = findNums[i];
-        var j = nums.indexOf(currentFindNums);
+    for (let i = 0; i < lengthFindNums; i++) {
+        let currentFindNums = findNums[i];
+        let j = nums.indexOf(currentFindNums);
         if (j === lengthNums - 1) {
             outputStack.push(-1);
             continue;
         }
         for (j = j + 1; j < lengthNums; j++) {
-            var currentNums = nums[j];
+            let currentNums = nums[j];
             if (currentNums > currentFindNums) {
                 outputStack.push(currentNums);
                 break;
             } else if (lengthNums - j === 1) {
                 outputStack.push(-1);
-                continue;
-            } else {
-                continue;
-            }
+            } 
         }
     } 
     return outputStack;

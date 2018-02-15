@@ -24,7 +24,7 @@ MinStack.prototype.push = function(x) {
  * @return {void}
  */
 MinStack.prototype.pop = function() {
-    var size = this._size,
+    let size = this._size,
         deletedData;
  
     if (size) {
@@ -49,9 +49,9 @@ MinStack.prototype.top = function() {
  */
 MinStack.prototype.getMin = function() {
     if (this._size) {
-        var min = this._storage[0];
-        var size = this._size;
-        var storage = this._storage;
+        let min = this._storage[0];
+        const size = this._size;
+        const storage = this._storage;
         for (let i = 1; i < size; i++) {
             min = Math.min(min, storage[i]);
         }
