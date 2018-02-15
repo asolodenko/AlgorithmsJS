@@ -9,28 +9,37 @@
 var isValid = function(s) {
     var stack = [];
     var sLength = s.length;
-    var open = ['(','{','['];
-    var close = [')','}',']'];
-    if (!open.includes(s[0])) {
+    
+    var obj_open = { '(': ')',
+    '{': '}',
+    '[': ']'};
+    var obj_close = reverseHash(obj_open);
+
+    if (obj_open[s[0]] === undefined) {
         return false;
     }
     for (let i = 0; i < sLength; i++) {
         let curItem = s[i];
-        if (open.includes(curItem)) {
+        if (obj_open[curItem] !== undefined) {
             stack.push(curItem);
-            continue;
-        } 
-        if (close.includes(curItem)){
+        } else if (obj_close[curItem] !== undefined) {
             if (stack.length === 0){
                 return false;
             }
             let temp = stack.pop(); 
-            if ((temp ==='(' && curItem ===')') || (temp ==='{' && curItem ==='}') || (temp ==='[' && curItem ===']')) {
-                continue;
-            } else {
+            if (obj_open[temp] !== curItem) {
                 return false;
             }
-        }
+        } else
+        throw new Error('Symbol type exception');
     }
     return stack.length === 0 ? true : false;
 };
+var reverseHash = function(initialHash) {
+    var reverseHash = {};
+    var keys = Object.keys(initialHash);
+    for (var key of keys) {
+        reverseHash[initialHash[key]] = key;
+    }
+    return reverseHash;
+}
